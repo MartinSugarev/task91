@@ -21,5 +21,20 @@ export default class Application extends EventEmitter {
     document.querySelector(".main").appendChild(message);
 
     this.emit(Application.events.READY);
+    this._beat = new Beat();
+    
   }
+ 
+  _create(){
+    this.on('bit', () => {
+      for(let i = 0; i < lyrics.length; i++){
+        const message = document.createElement("div");
+        message.classList.add("message");
+        message.innerText = lyrics[i];
+    
+        document.querySelector(".main").appendChild(message);
+      }
+    })
+  }
+  
 }
