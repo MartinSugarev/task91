@@ -25,10 +25,8 @@ export default class Application extends EventEmitter {
     this._beat.addListener(Beat.events.BIT, function(){
       console.log("beat");
       
+      
     })
-  }
- 
-  _create(){
     this.on(Beat.events.BIT, () => {
       for(let i = 0; i < lyrics.length; i++){
         const message = document.createElement("div");
@@ -38,6 +36,10 @@ export default class Application extends EventEmitter {
         document.querySelector(".main").appendChild(message);
       }
     })
+  }
+ 
+  _create(){
+    
   }
   
 }
