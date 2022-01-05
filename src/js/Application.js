@@ -21,7 +21,7 @@ export default class Application extends EventEmitter {
 
     document.querySelector(".main").appendChild(message);
 
-    this.emit(Application.events.READY);
+    
      this._beat.addListener(this._beat.events.BIT, function(){
       console.log("beat");
     })
@@ -36,6 +36,7 @@ export default class Application extends EventEmitter {
         document.querySelector(".main").appendChild(message);
       }
     })
+    this.emit(Application.events.READY);
   }
   
  
