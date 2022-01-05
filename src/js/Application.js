@@ -22,12 +22,12 @@ export default class Application extends EventEmitter {
 
     this.emit(Application.events.READY);
     this._beat = new Beat();
-    this._beat.addListener(Beat.events.BIT, function(){
+    this._beat.addListener(this._beat.events.BIT, function(){
       console.log("beat");
       
       
     })
-    this.on(Beat.events.BIT, () => {
+    this.on(this._beat.events.BIT, () => {
       for(let i = 0; i < lyrics.length; i++){
         const message = document.createElement("div");
         message.classList.add("message");
@@ -39,7 +39,16 @@ export default class Application extends EventEmitter {
   }
  
   _create(){
+    this.emit(this._beat.events.BIT)
+    this.on(this._beat.events.BIT, () => {
+      for(let i = 0; i < lyrics.length; i++){
+        const message = document.createElement("div");
+        message.classList.add("message");
+        message.innerText = lyrics[i];
     
+        document.querySelector(".main").appendChild(message);
+      }
+    })
   }
   
 }
