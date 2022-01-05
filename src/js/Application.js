@@ -29,7 +29,7 @@ export default class Application extends EventEmitter {
   }
  
   _create(){
-    this.on('bit', () => {
+    this.on(Beat.events.BIT, () => {
       for(let i = 0; i < lyrics.length; i++){
         const message = document.createElement("div");
         message.classList.add("message");
