@@ -7,8 +7,9 @@ export default class Application extends EventEmitter {
       READY: "ready",
     };
   }
-
+   
   constructor() {
+    this._beat = new Beat();
     super();
 
     const lyrics = ["Ah", "ha", "ha", "ha", "stayin' alive", "stayin' alive"];
@@ -21,12 +22,14 @@ export default class Application extends EventEmitter {
     document.querySelector(".main").appendChild(message);
 
     this.emit(Application.events.READY);
-    this._beat = new Beat();
+
+    
     this._beat.addListener(this._beat.events.BIT, function(){
       console.log("beat");
       
       
     })
+
     this.on(this._beat.events.BIT, () => {
       for(let i = 0; i < lyrics.length; i++){
         const message = document.createElement("div");
@@ -37,6 +40,7 @@ export default class Application extends EventEmitter {
       }
     })
   }
+  
  
   _create(){
     this.emit(this._beat.events.BIT)
