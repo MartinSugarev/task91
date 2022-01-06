@@ -9,7 +9,7 @@ export default class Application extends EventEmitter {
   }
    
   constructor() {
-    this._beat = new Beat();
+    
     super();
 
     const lyrics = ["Ah", "ha", "ha", "ha", "stayin' alive", "stayin' alive"];
@@ -20,18 +20,18 @@ export default class Application extends EventEmitter {
     message.innerText = "Ah";
 
     document.querySelector(".main").appendChild(message);
-
+    this._beat = new Beat();
      this._beat.addListener(this._beat.events.BIT, function(){
       console.log("beat");
     })
-    this.emit(this._beat.events.BIT);
+    this.emit(Beat.events.BIT);
     this.emit(Application.events.READY);
   }
   
  
   _create(){
-    this.emit(this._beat.events.BIT)
-    this.on(this._beat.events.BIT, () => {
+    
+    this.on(Beat.events.BIT, () => {
       for(let i = 0; i < lyrics.length; i++){
         const message = document.createElement("div");
         message.classList.add("message");
